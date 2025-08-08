@@ -1,0 +1,91 @@
+import React, { useState } from 'react';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { GripVertical } from 'lucide-react';
+
+const RankingQuestion = ({ question, onAnswer }) => {
+  const [items, setItems] = useState(question.items);
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const reorderedItems = Array.from(items);
+    const [removed] = reorderedItems.splice(result.source.index, 1);
+    reorderedItems.splice(result.destination.index, 0, removed);
+
+    setItems(reorderedItems);
+  };
+
+  const handleSubmit = () => {
+    // Score is calculated based on the rank of 'Rational' items.
+    // Rank 1 gets 6 points, Rank 2 gets 5, ..., Rank 6 gets 1.
+    const points = [6, 5, 4, 3, 2, 1];
+    let score = 0;
+    items.forEach((item, index) => {
+      if (item.tag === 'R') {
+        score += points[index];
+      }
+    });
+    onAnswer(score);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+    >
+      <div className="mb-6 text-center text-slate-600">
+        <p>{question.subheading}</p>
+      </div>
+
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="ranking-list">
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="space-y-3 max-w-xl mx-auto"
+            >
+              {items.map((item, index) => (
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className={`flex items-center p-4 rounded-lg border transition-all duration-200 ${
+                        snapshot.isDragging
+                          ? 'bg-amber-100 shadow-lg scale-105'
+                          : 'bg-white shadow-sm'
+                      }`}
+                    >
+                      <span className="text-xl font-bold text-amber-500 w-10 text-center">{index + 1}</span>
+                      <span className="flex-grow text-slate-700 leading-normal">{item.text}</span>
+                      <GripVertical className="text-slate-400 ml-4" />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+
+      <div className="flex justify-center pt-8">
+        <Button
+          onClick={handleSubmit}
+          className="bg-amber-600 hover:bg-amber-700 px-8 py-3 text-lg font-semibold"
+        >
+          繼續
+        </Button>
+      </div>
+    </motion.div>
+  );
+};
+
+export default RankingQuestion;
