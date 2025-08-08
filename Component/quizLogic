@@ -1,0 +1,133 @@
+
+import { quizQuestions, cbtiProfiles } from './quizData';
+
+/**
+ * Calculates the score for a single question based on its type and the user's answer.
+ * @param {object} question - The question object from quizData.
+ * @param {object} answer - The user's answer object { question_id, score }.
+ * @returns {number} The calculated score for the question.
+ */
+function getQuestionScore(question, answer) {
+  if (!answer) return 0;
+
+  // Handle multi-scale questions (Q6 for Decision Style, Q12 for Info Pref)
+  if (question.type === 'multi-scale') {
+    const subAnswers = answer.score; // This is an object of sub-question answers
+    let finalScore = 0;
+    
+    if (question.dimension === 'decision_style') {
+      let weightedScore = 0;
+      question.subQuestions.forEach(sub => {
+        const rawScore = subAnswers[sub.id] || 0;
+        let score = rawScore;
+        // Reverse score for rational items
+        if (sub.tag === 'R') score = 6 - rawScore;
+        weightedScore += score * sub.weight;
+      });
+      finalScore = weightedScore;
+    } else if (question.dimension === 'information_preference') {
+      let totalScore = 0;
+      question.subQuestions.forEach(sub => {
+        const rawScore = subAnswers[sub.id] || 0;
+        let score = rawScore;
+        // Reverse score for objective items
+        if (sub.tag === 'O') score = 6 - rawScore;
+        totalScore += score;
+      });
+      const averageScore = question.subQuestions.length > 0 ? totalScore / question.subQuestions.length : 0;
+      finalScore = averageScore * (8/5);
+    }
+    return finalScore;
+  }
+
+  // Handle questions with score mapping (Q9 for Time Horizon)
+  if (question.scoreMapping) {
+    const rawValue = answer.score;
+    const index = rawValue - question.scaleOptions[0].value;
+    if (index >= 0 && index < question.scoreMapping.length) {
+      return question.scoreMapping[index];
+    }
+    return 0;
+  }
+
+  // For simple multiple choice or scale questions without mapping
+  return answer.score;
+}
+
+/**
+ * Calculates the final CBTI profile based on all user answers.
+ * @param {Array<object>} userAnswers - Array of user answer objects.
+ * @returns {object} The final result including code, scores, and profile details.
+ */
+export function calculateCbtiProfile(userAnswers) {
+  // Step 1: Calculate total scores for each dimension
+  const dimensionScores = {
+    risk_attitude: 0,
+    decision_style: 0,
+    time_horizon: 0,
+    information_preference: 0,
+  };
+
+  userAnswers.forEach(answer => {
+    const question = quizQuestions.find(q => q.id === answer.question_id);
+    if (question) {
+      const score = getQuestionScore(question, answer);
+      dimensionScores[question.dimension] += score;
+    }
+  });
+
+  // Step 2: Determine the 4-letter CBTI code
+  
+  // Risk Attitude (T/A)
+  let riskLetter = '';
+  const q1Answer = userAnswers.find(a => a.question_id === 1);
+  if (q1Answer && q1Answer.score >= 7) {
+    riskLetter = 'T';
+  } else {
+    let weightedRiskScore = 0;
+    userAnswers.forEach(ans => {
+      const q = quizQuestions.find(q => q.id === ans.question_id);
+      if (q && q.dimension === 'risk_attitude' && q.weight) {
+        weightedRiskScore += ans.score * q.weight;
+      }
+    });
+    riskLetter = weightedRiskScore <= 3.5 ? 'A' : 'T';
+  }
+
+  // Decision Style (R/I)
+  const answeredDecisionQuestions = userAnswers.filter(a => quizQuestions.find(q => q.id === a.question_id)?.dimension === 'decision_style');
+  const decisionAverage = answeredDecisionQuestions.length > 0 ? dimensionScores.decision_style / answeredDecisionQuestions.length : 0;
+  const decisionLetter = decisionAverage < 3.0 ? 'I' : 'R';
+
+  // Time Horizon (S/L) - Check Q9 skip logic
+  const q9Answer = userAnswers.find(a => a.question_id === 9);
+  let timeHorizonLetter = '';
+  
+  if (q9Answer) {
+    const q9Question = quizQuestions.find(q => q.id === 9);
+    // Get the final calculated score for question 9, not the raw value
+    const q9MappedScore = getQuestionScore(q9Question, q9Answer); 
+    
+    if (q9MappedScore > 4) {
+      // User answered for short-term (high score), so 'S'
+      timeHorizonLetter = 'S';
+    } else {
+      // User answered for long-term (low score), so we check the total score of all answered time horizon questions
+      timeHorizonLetter = dimensionScores.time_horizon < 15 ? 'L' : 'S';
+    }
+  } else {
+    // Fallback in case Q9 was somehow not answered
+    timeHorizonLetter = dimensionScores.time_horizon < 15 ? 'L' : 'S';
+  }
+
+  // Information Preference (C/O)
+  const informationPrefLetter = dimensionScores.information_preference < 15 ? 'O' : 'C';
+
+  const cbtiCode = [riskLetter, decisionLetter, timeHorizonLetter, informationPrefLetter].join('');
+  
+  return {
+    cbtiCode,
+    dimensionScores,
+    profile: cbtiProfiles[cbtiCode]
+  };
+}
