@@ -1,13 +1,17 @@
-==Quiz==
+
+Quiz:
 呈現 CBTI 問題（QuestionCard）
 接收使用者答案
 根據答題情況進行 跳題邏輯處理
 完成後計算結果，並顯示結果頁
-==Component/QuestionCard ===
-處理單一題目（Question）的 UI - 進度顯示、Scale題滑桿樣貌、單選題...etc
-===Component/ResultsDisplay =====
+
+Component/QuestionCard : 
+處理單一題目（Question）的 UI - 進度顯示、Scale題滑桿樣貌、單選題...etc //
+
+Component/ResultsDisplay:
 做完測驗完結果頁的UI
 ＊記得把課金幹話刪掉 但我也不介意大家課金給我
+
 ====Component/quizData=====
 CBTI 問題資料庫定義所有問題、問題格式（單選、Scale、Mutiscale題組）、權重、問題所屬面向
 定義CBTI 類型人格總表
