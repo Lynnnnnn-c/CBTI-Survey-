@@ -1,0 +1,46 @@
+{
+  "name": "QuizResult",
+  "type": "object",
+  "properties": {
+    "cbti_code": {
+      "type": "string",
+      "description": "4-letter CBTI code like TRSC"
+    },
+    "user_answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_id": {
+            "type": "number"
+          },
+          "score": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "dimension_scores": {
+      "type": "object",
+      "properties": {
+        "risk_attitude": {
+          "type": "number"
+        },
+        "decision_style": {
+          "type": "number"
+        },
+        "time_horizon": {
+          "type": "number"
+        },
+        "information_preference": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "required": [
+    "cbti_code",
+    "user_answers",
+    "dimension_scores"
+  ]
+}
