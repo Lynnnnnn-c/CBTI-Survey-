@@ -1,0 +1,163 @@
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Sparkles, User, Target, TrendingUp, Share } from 'lucide-react';
+
+export default function ResultsDisplay({ profile, onRestart }) {
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: `I'm a ${profile.name} (${profile.code}) - CBTI Investor Personality`,
+        text: `Discover your CBTI investor personality! I got: ${profile.name} - ${profile.shortDescription}`,
+        url: window.location.origin
+      });
+    } else {
+      navigator.clipboard.writeText(
+        `I'm a ${profile.name} (${profile.code}) - CBTI Investor Personality! Discover yours at ${window.location.origin}`
+      );
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full max-w-4xl mx-auto space-y-8"
+    >
+      {/* Header Card */}
+      <Card className="bg-gradient-to-br from-slate-900 to-slate-800 border-0 shadow-2xl text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full -translate-y-32 translate-x-32" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-400/10 rounded-full translate-y-24 -translate-x-24" />
+        
+        <CardContent className="p-8 md:p-12 relative z-10">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Sparkles className="w-6 h-6 text-amber-400" />
+              <span className="text-amber-400 font-semibold">Your CBTI Result</span>
+            </div>
+            
+            <Badge className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-lg px-6 py-2 mb-6">
+              {profile.code}
+            </Badge>
+            
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{profile.name}</h1>
+            <p className="text-xl text-slate-300 mb-2">{profile.chineseName}</p>
+            <p className="text-2xl text-amber-400 font-semibold">{profile.shortDescription}</p>
+            
+            <div className="mt-8 flex items-center justify-center gap-3">
+              <User className="w-5 h-5 text-slate-400" />
+              <span className="text-slate-300">Just like {profile.representative}</span>
+            </div>
+
+            {/* Payment Information */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="mt-8 p-4 bg-amber-500/20 rounded-lg border border-amber-400/30"
+            >
+              <p className="text-amber-200 font-medium mb-2">
+                現在只要10u轉入以下地址
+              </p>
+              <p className="text-amber-100 font-mono text-sm bg-slate-800/50 p-2 rounded break-all">
+                0xECCBB7B1AE0aFC4D4BBa85E6124a11BEC0CE4C41
+              </p>
+              <p className="text-amber-200 font-medium mt-2">
+                即可解鎖你的專屬投資策略
+              </p>
+            </motion.div>
+          </motion.div>
+        </CardContent>
+      </Card>
+
+      {/* Personality Section */}
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Your Personality</h2>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-lg text-slate-700 leading-relaxed">
+              {profile.personality}
+            </p>
+            <div className="pt-4 border-t border-slate-200">
+              <p className="text-slate-600 leading-relaxed">
+                {profile.chinesePersonality}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Strategy Section */}
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6 }}
+      >
+        <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-xl">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                <Target className="w-5 h-5 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">Your Preferred Strategy</h2>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-lg text-slate-700 leading-relaxed">
+              {profile.strategy}
+            </p>
+            <div className="pt-4 border-t border-slate-200">
+              <p className="text-slate-600 leading-relaxed">
+                {profile.chineseStrategy}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Action Buttons */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="flex flex-col sm:flex-row gap-4 pt-6"
+      >
+        <Button
+          onClick={handleShare}
+          className="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-6 text-lg shadow-lg"
+        >
+          <Share className="w-5 h-5 mr-2" />
+          Share Your Result
+        </Button>
+        <Button
+          onClick={onRestart}
+          variant="outline"
+          className="flex-1 border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold py-6 text-lg"
+        >
+          <TrendingUp className="w-5 h-5 mr-2" />
+          Take Quiz Again
+        </Button>
+      </motion.div>
+    </motion.div>
+  );
+}
