@@ -95,7 +95,7 @@ export const quizQuestions = [
     options: [
       { text: "I mainly follow real-time sentiment and price moves, making large position adjustments during upswings or downswings to chase maximum returns, rarely doing advance calculations or setting caps.", score: 1 },
       { text: "I dynamically adjust positions based on recent momentum or market mood: allocating heavily to strong tokens/strategies when sentiment is optimistic, and shifting to defensive positions when cautious, usually without setting strict caps on a single token/strategy to avoid missing outsized profit opportunities.", score: 2 },
-      { text: "I also adjust positions dynamically with market momentum or sentiment - allocating more to strong tokens/strategies when optimistic, shifting defensive when cautious, but I still set maximum caps for any single token/strategy.", score: 3 },
+      { text: "I adjust positions dynamically with market momentum or sentiment - allocating more to strong tokens/strategies when optimistic, shifting defensive when cautious, but I still set maximum caps for any single token/strategy.", score: 3 },
       { text: "I have a general allocation framework but don’t recalculate after each investment; Instead, I review periodically and rebalance if a token/strategy drifts outside the intended range.", score: 4 },
       { text: "I calculate investable amounts based on my own capital management principles (e.g., Kelly, VaR, portfolio risk limits), then make fine-tuned adjustments according to market conditions and community sentiment.", score: 5 },
     ]
