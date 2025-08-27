@@ -20,7 +20,7 @@ export default function QuestionCard({ question, onAnswer, onBack, currentQuesti
 
   const currentScaleLabel = question.type === 'scale' && selectedScale !== null 
     ? question.scaleOptions.find(opt => opt.value === selectedScale)?.label 
-    : "請拖動滑桿選擇";
+    : "Please drag the slider to select";
 
   return (
     <motion.div
@@ -135,7 +135,7 @@ export default function QuestionCard({ question, onAnswer, onBack, currentQuesti
                   disabled={selectedScale === null}
                   className="bg-amber-600 hover:bg-amber-700 px-8 py-3 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  繼續
+                  Continue
                 </Button>
               </div>
             </motion.div>
