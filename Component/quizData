@@ -103,7 +103,7 @@ export const quizQuestions = [
   {
     id: 8,
     dimension: "decision_style",
-    question: "當你已買入某標的後，無論行情上漲或下跌，下列哪一種「出場決策」最符合你平常的做法？",
+    question: "After you have already bought an asset, regardless of whether the market goes up or down, which of the following exit decision styles best matches your usual practice?",
     options: [
       { text: "I mainly rely on real-time price and market sentiment to decide exits, acting quickly to avoid missing gains or extending losses.", score: 1 },
       { text: "I usually react to current price moves and sentiment by trimming a small portion first, then later adjust or reset my plan.", score: 2 },
