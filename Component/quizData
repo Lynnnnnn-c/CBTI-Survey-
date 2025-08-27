@@ -105,11 +105,11 @@ export const quizQuestions = [
     dimension: "decision_style",
     question: "當你已買入某標的後，無論行情上漲或下跌，下列哪一種「出場決策」最符合你平常的做法？",
     options: [
-      { text: "主要憑即時價格與市場氛圍決定進出場，以免少賺或擴大損失", score: 1 },
-      { text: "多半先看盤感和當下市場氛圍，先少減倉，再回頭調整或重訂原計畫。", score: 2 },
-      { text: "心中有大致停利／停損原則，若價格衝得特別快或突然轉弱，會臨時提前賣出", score: 3 },
-      { text: "以預設停利／停損為主，但當價格或市場狀態接近我認定的關鍵位（ATH、月／季線、社群 Mindshare 高點…）時，只在既定規則範圍內做小幅微微調整目標價/停損線", score: 4 },
-      { text: "依照事前設定的停損、目標價或時間止盈，途中不因短期波動而改動", score: 5 },
+      { text: "I mainly rely on real-time price and market sentiment to decide exits, acting quickly to avoid missing gains or extending losses.", score: 1 },
+      { text: "I usually react to current price moves and sentiment by trimming a small portion first, then later adjust or reset my plan.", score: 2 },
+      { text: "I keep rough take-profit/stop-loss principles in mind, but if the price surges too fast or suddenly weakens, I may sell earlier than planned.", score: 3 },
+      { text: "I mainly follow preset take-profit/stop-loss levels, but when price or market conditions approach key levels I recognize (ATH, monthly/quarterly lines, peak community mindshare, etc.), I may make minor adjustments within my rules.", score: 4 },
+      { text: "I stick to pre-set stop-losses, target prices, or time-based exits, and do not change them due to short-term fluctuations.", score: 5 },
     ]
   },
 
