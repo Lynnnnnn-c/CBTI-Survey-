@@ -66,13 +66,13 @@ export default function ResultsDisplay({ profile, onRestart }) {
               className="mt-8 p-4 bg-amber-500/20 rounded-lg border border-amber-400/30"
             >
               <p className="text-amber-200 font-medium mb-2">
-                現在只要10u轉入以下地址
+                if you want to sponsor this project, donate 10u to this address
               </p>
               <p className="text-amber-100 font-mono text-sm bg-slate-800/50 p-2 rounded break-all">
                 0xECCBB7B1AE0aFC4D4BBa85E6124a11BEC0CE4C41
               </p>
               <p className="text-amber-200 font-medium mt-2">
-                即可解鎖你的專屬投資策略
+                Just kidding :)
               </p>
             </motion.div>
           </motion.div>
