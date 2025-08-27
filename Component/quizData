@@ -4,7 +4,7 @@ export const quizQuestions = [
   {
     id: 1,
     dimension: "risk_attitude",
-    question: "加密貨幣在你總資產中的比例？",
+    question: "What percentage of your investment portfolio is allocated to cryptocurrency？",
     type: "scale",
     weight: 0.25,
     scaleOptions: [
@@ -22,42 +22,42 @@ export const quizQuestions = [
   {
     id: 2,
     dimension: "risk_attitude",
-    question: "以下哪個敘事最符合你在「大部分時間」決定進出場時所「最優先」考量的重點？",
+    question: "When making entry or exit decisions most of the time, which narrative do you prioritize the most?",
     weight: 0.20,
     options: [
-      { text: "歷經多次牛熊、已被主流市場認可的 BTC、ETH 最能滿足我的保值需求；我的操作多半只是低點加碼或高點獲利了結", score: 1 },
-      { text: "除了 BTC、ETH，我也會研究像 SOL、BNB 這類耕耘已久、規模大且穩定的成熟 Altcoin，在穩健配置中追求適度成長", score: 3 },
-      { text: "關注本週期用戶數已顯著快速增長的中大型專案，期待隨著採用度提升獲取可觀增長", score: 5 },
-      { text: "聚焦敘事正熱、產品剛上線的新興專案，期待把握短時間內的爆發式成長機會", score: 6.5 },
-      { text: "偏好研究剛推出、波動極大的標的，尋求短時間內的高倍報酬", score: 7.5 },
-      { text: "考慮市場風向去開永續合約以追尋短時間內的高倍報酬", score: 8 }
+      { text: "I focus on BTC and ETH, which have gone through multiple cycles and are widely recognized by the mainstream market. My main goal is value preservation, and I usually just buy more at lows or take profits at highs.", score: 1 },
+      { text: "In addition to BTC and ETH, I also allocate to well-established, large-cap altcoins such as SOL and BNB, aiming for steady growth on top of a solid foundation.", score: 3 },
+      { text: "I pay attention to mid-to-large projects that have already shown significant user growth this cycle, expecting substantial returns as adoption increases.", score: 5 },
+      { text: "I focus on emerging projects with hot narratives and newly launched products, seeking explosive short-term growth opportunities", score: 6.5 },
+      { text: "I prefer to research newly launched, highly volatile tokens, aiming for high-multiple returns in a short period.", score: 7.5 },
+      { text: "I follow market sentiment and use perpetual contracts to chase high-multiple returns in the short term.", score: 8 }
     ]
   },
   {
     id: 3,
     dimension: "risk_attitude",
-    question: "若持倉短時間內下跌 30%，以下敘述最符合你的行為",
+    question: "If your holdings drop 30% in a short time, which of the following best describes your action?",
     weight: 0.25,
     options: [
-      { text: "先全部或大幅減倉再觀察", score: 1 },
-      { text: "我會先部分減倉或全部離場，保留資金安全，再觀察後續走勢", score: 2 },
-      { text: "我會先持續觀察、暫不調整部位，等待更明確的市場訊號再決定", score: 3 },
-      { text: "分批加碼攤平成本", score: 5 },
-      { text: "分批加碼攤平成本，並用 1–3× 槓桿做空", score: 6.5 },
-      { text: "把回撤視為大機會，直接大幅加碼或開 2–5× 槓桿，追求反彈收益", score: 8 }
+      { text: "I would sell most or all of my position immediately and wait before re-entering.", score: 1 },
+      { text: "I would partially reduce my position to protect capital first, then observe the market before re-entering.", score: 2 },
+      { text: "I would hold my position for now without making any immediate adjustments, waiting for clearer market signals before making a decision.", score: 3 },
+      { text: "I would gradually buy more to lower my average entry price.", score: 5 },
+      { text: "I’d buy more to lower my average price, and at the same time open a 1–3× short.", score: 6.5 },
+      { text: "I would treat the drawdown as a major opportunity and increase my position, while also opening a 2–5× perp position to seek additional profits.", score: 8 }
     ]
   },
   {
     id: 4,
     dimension: "risk_attitude",
-    question: "若認為市場出現明顯機會，你願意動用多大程度的借貸來增加部位？",
+    question: "If you believe there is a clear market opportunity, how much borrowing would you be willing to use to increase your investable capital?",
     weight: 0.10,
     options: [
-      { text: "我完全不借貸，只專注提高本業收入／現金流，穩定地用自有資金佈局加密貨幣，並不介意錯過短期行情。", score: 1 },
-      { text: "我願意以少量穩定幣質押或申請 3 % 左右信貸，但僅買入現貨", score: 3 },
-      { text: "若抵押品為藍籌幣種且比抵押穩定幣成本更低，我願意抵押藍籌幣再買現貨", score: 4.5 },
-      { text: "我會透過多元借款管道，將現貨槓桿拉到 ≈ 2X，以放大多頭行情收益。", score: 6.25 },
-      { text: "能借盡借，不限來源，現貨部位放大 > 2X；若抵押品價值下跌，也願意 追加抵押物", score: 8 }
+      { text: "I would not borrow at all. I focus on increasing income and cash flow from my main job, steadily allocating my own capital into crypto, and I don’t mind missing short-term opportunities.", score: 1 },
+      { text: "I am willing to pledge a small amount of stablecoins to borrow additional crypto/stablecoins, or take on a personal loan from a bank at around 3% interest.", score: 3 },
+      { text: "If blue-chip tokens such as BTC or ETH can be used as collateral at a lower cost than stablecoins, I would be willing to use them to buy more spot.", score: 4.5 },
+      { text: "I would borrow through multiple channels to expand my spot holdings to more than 2×, aiming to amplify gains in a bull market.", score: 6.25 },
+      { text: "I would borrow as much as possible, regardless of the source, to expand beyond 2×, and even use perpetual contracts with leverage to pursue greater returns.", score: 8 }
     ]
   },
   {
