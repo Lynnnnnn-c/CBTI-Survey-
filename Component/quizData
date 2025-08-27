@@ -8,7 +8,7 @@ export const quizQuestions = [
     type: "scale",
     weight: 0.25,
     scaleOptions: [
-      { label: "5% 以下", value: 0 },
+      { label: "Below 5%", value: 0 },
       { label: "5-15%", value: 1 },
       { label: "15-30%", value: 2 },
       { label: "30-40%", value: 3 },
