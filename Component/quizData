@@ -63,14 +63,14 @@ export const quizQuestions = [
   {
     id: 5,
     dimension: "risk_attitude",
-    question: "當你對市場走勢有「明確方向判斷或策略機會」時，願意使用多高倍數的永續 / 期貨槓桿？",
+    question: "When you have a clear market view or see a specific strategy opportunity, what level of leverage would you be willing to use in perpetuals?",
     weight: 0.20,
     options: [
-      { text: "幾乎不用衍生品，只做現貨", score: 1 },
-      { text: "只在高把握度時小開 1–2× 槓桿", score: 4 },
-      { text: "樂於使用 2–3× 槓桿，放大波段收益", score: 5 },
-      { text: "可接受 3–5× 槓桿，並嚴設止損或調整保證金", score: 6 },
-      { text: "敢開 > 5× 甚至 10× 全倉，追求爆發式報酬", score: 8 }
+      { text: "I almost never use perpetuals, I only trade spot.", score: 1 },
+      { text: "I would only use small leverage of 1–2× on perpetuals when I have high conviction.", score: 4 },
+      { text: "I am comfortable using 2–3× leverage on perpetuals.", score: 5 },
+      { text: "I am comfortable using 3–5× leverage on perpetuals.", score: 6 },
+      { text: "I am willing to go beyond 5×, even up to 10× with full position, to pursue explosive gains.", score: 8 }
     ]
   },
 
@@ -79,25 +79,25 @@ export const quizQuestions = [
     id: 6,
     dimension: "decision_style",
     type: "multi-scale",
-    question: "當朋友或社群推薦一個你從未研究過的新幣時通常會採取的行動。請就「實際情況」為每句話評分",
+    question: "When a friend or a familiar community recommends a new token you have never researched before, how would you usually act? Please rate each statement based on your actual behavior.",
     subQuestions: [
-      { id: 'ds_1_1', text: '我會先比對同賽道標的，並回頭檢視自己的風控 / 財務分配模型原則，確認風險可控後再下單。', tag: 'R', weight: 0.3 },
-      { id: 'ds_1_2', text: '列出關鍵鏈上數據（市值、TVL…）與社群熱度指標(Mindshare) 快速檢核，設好停損，再小倉試單', tag: 'R', weight: 0.25 },
-      { id: 'ds_1_3', text: '先檢查自己的持倉分佈與當前可動用資金，若部位允許且這個新幣基本面看起來無問題，就少量進場', tag: 'R', weight: 0.2 },
-      { id: 'ds_1_4', text: '快速瀏覽官方網站與社群，覺得沒大問題便投入，再視情況調整策略', tag: 'I', weight: 0.15 },
-      { id: 'ds_1_5', text: '看價格仍在自己認為的低位就先買，邊漲邊想停利或加碼策略', tag: 'I', weight: 0.1 },
+      { id: 'ds_1_1', text: 'I would first compare it with other tokens in the same sector and review my risk control / portfolio allocation principles, confirming the risk is manageable before entering.', tag: 'R', weight: 0.3 },
+      { id: 'ds_1_2', text: 'I would list key on-chain metrics (market cap, TVL, etc.) and community heat indicators (mindshare) for a quick check, set a stop-loss, then try with a small position.', tag: 'R', weight: 0.25 },
+      { id: 'ds_1_3', text: 'I would review my current holdings and available funds, and if the allocation allows and the token’s fundamentals look acceptable, I would enter with a small amount.', tag: 'R', weight: 0.2 },
+      { id: 'ds_1_4', text: 'I would quickly skim the official website and community, and if nothing seems wrong, I would invest first and adjust my strategy later.', tag: 'I', weight: 0.15 },
+      { id: 'ds_1_5', text: 'If the price looks low to me, I would buy first, then decide on profit-taking or adding more as it rises.', tag: 'I', weight: 0.1 },
     ]
   },
   {
     id: 7,
     dimension: "decision_style",
-    question: "配置資金比例時，下列哪一種方式最符合你平常採用的資金分配邏輯？",
+    question: "When allocating capital, which approach best reflects how you usually distribute funds?",
     options: [
-      { text: "主要看即時情緒與價格，抓緊行情上行或下行的情緒波動大幅調整倉位，力求最大報酬，很少事前計算或留上限", score: 1 },
-      { text: "依近期動能或市場氛圍動態調倉：行情樂觀時大幅加碼強勢幣／策略，保守時轉向防禦倉，不特別設定單一幣種／策略上限以免錯失極大化利潤機會", score: 2 },
-      { text: "根據近期動能或市場氛圍動態調倉，行情樂觀就多配強勢幣/策略，保守時轉向防禦幣/策略，但仍設單一幣種／策略的最大上限", score: 3 },
-      { text: "有大致分配邏輯，不每次重新計算；投入後會定期檢視，若某標的/策略超出或低於預期比重，會調整倉位再平衡", score: 4 },
-      { text: "依照自己的資金管理原則（如 Kelly、VaR、組合風險上限等）推算可投入金額，再配合市場狀況 、社群情緒微調", score: 5 },
+      { text: "I mainly follow real-time sentiment and price moves, making large position adjustments during upswings or downswings to chase maximum returns, rarely doing advance calculations or setting caps.", score: 1 },
+      { text: "I dynamically adjust positions based on recent momentum or market mood: allocating heavily to strong tokens/strategies when sentiment is optimistic, and shifting to defensive positions when cautious, usually without setting strict caps on a single token/strategy to avoid missing outsized profit opportunities.", score: 2 },
+      { text: "I also adjust positions dynamically with market momentum or sentiment - allocating more to strong tokens/strategies when optimistic, shifting defensive when cautious, but I still set maximum caps for any single token/strategy.", score: 3 },
+      { text: "I have a general allocation framework but don’t recalculate after each investment; Instead, I review periodically and rebalance if a token/strategy drifts outside the intended range.", score: 4 },
+      { text: "I calculate investable amounts based on my own capital management principles (e.g., Kelly, VaR, portfolio risk limits), then make fine-tuned adjustments according to market conditions and community sentiment.", score: 5 },
     ]
   },
   {
