@@ -8,26 +8,26 @@ import { Slider } from '@/components/ui/slider';
 const getScaleOptions = (dimension) => {
   if (dimension === "decision_style") {
     return [
-      { label: '從不', value: 1 },
-      { label: '很少', value: 2 },
-      { label: '偶爾', value: 3 },
-      { label: '經常', value: 4 },
-      { label: '總是', value: 5 },
+      { label: 'Never', value: 1 },
+      { label: 'Rarely', value: 2 },
+      { label: 'Occasionally', value: 3 },
+      { label: 'Often', value: 4 },
+      { label: 'Always', value: 5 },
     ];
   } else {
     return [
-      { label: '完全不影響', value: 1 },
-      { label: '稍有影響', value: 2 },
-      { label: '有影響', value: 3 },
-      { label: '高度影響', value: 4 },
-      { label: '非常關鍵', value: 5 },
+      { label: 'No impact', value: 1 },
+      { label: 'Minor impact', value: 2 },
+      { label: 'Moderate impact', value: 3 },
+      { label: 'High impact', value: 4 },
+      { label: 'Crtical', value: 5 },
     ];
   }
 };
 
 const SubQuestion = ({ sub, value, onChange, dimension }) => {
   const scaleOptions = getScaleOptions(dimension);
-  const currentLabel = scaleOptions.find(opt => opt.value === value)?.label || '請選擇';
+  const currentLabel = scaleOptions.find(opt => opt.value === value)?.label || 'Please Choice';
   const minLabel = scaleOptions[0].label;
   const maxLabel = scaleOptions[scaleOptions.length - 1].label;
 
@@ -101,7 +101,7 @@ const MultiScaleQuestion = ({ question, onAnswer }) => {
           disabled={!allAnswered}
           className="bg-amber-600 hover:bg-amber-700 px-8 py-3 text-lg font-semibold disabled:opacity-50"
         >
-          繼續
+          Continue
         </Button>
       </div>
     </motion.div>
